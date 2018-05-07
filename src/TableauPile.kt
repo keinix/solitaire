@@ -23,7 +23,7 @@ class TableauPile(var cards: MutableList<Card> = mutableListOf()) {
 
     fun removeCards(tappedIndex: Int) {
         for (i in tappedIndex..cards.lastIndex) {
-            cards.removeAt(i)
+            cards.removeAt(tappedIndex)
         }
         if (cards.size > 0) {
             cards.last().faceUp = true
@@ -31,6 +31,6 @@ class TableauPile(var cards: MutableList<Card> = mutableListOf()) {
     }
 
     private fun suitCheck(card1: Card, card2: Card) =
-        !(blackSuit.contains(card1.suit) && blackSuit.contains(card2.suit) ||
-                !(redSuit.contains(card1.suit) && redSuit.contains(card2.suit)))
+        (blackSuit.contains(card1.suit) && redSuit.contains(card2.suit) ||
+                (redSuit.contains(card1.suit) && blackSuit.contains(card2.suit)))
 }
